@@ -11,6 +11,6 @@ public class ChaineRestauration {
     private String libelle;
     private LocalDate dateCreation;
 
-    @OneToMany(mappedBy = "chaineRestauration")
+    @OneToMany(mappedBy = "chaineRestauration",fetch = FetchType.LAZY)
     private List<Restaurant> restaurants;
 }
