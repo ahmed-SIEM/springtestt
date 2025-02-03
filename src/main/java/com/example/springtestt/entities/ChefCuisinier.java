@@ -14,6 +14,6 @@ public class ChefCuisinier {
     @Enumerated(EnumType.STRING)
     private TypeChef typeChef;
 
-    @ManyToMany(mappedBy="chefs", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy="chefs")
     private Set<Menu> menus;
 }
