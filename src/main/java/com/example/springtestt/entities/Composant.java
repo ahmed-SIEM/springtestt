@@ -14,7 +14,7 @@ public class Composant {
     private Menu menu;
 
     @OneToOne
-    private DetailComposant DetailComposant;
+    private DetailComposant detailComposant;
 
 }
 

@@ -32,7 +32,7 @@ public class MenuService implements IMenuService {
     @Override
     public Menu retrieveMenu(Long idMenu) {
         Optional<Menu> menu = menuRepository.findById(idMenu);
-        return menu.orElse(null);  
+        return menu.orElse(null);
     }
 
     @Override
