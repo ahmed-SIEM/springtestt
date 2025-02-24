@@ -2,17 +2,19 @@ package com.example.springtestt.services;
 
 import com.example.springtestt.entities.Restaurant;
 import com.example.springtestt.repositories.RestaurantRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+
+@Service
+@AllArgsConstructor
+
 public class RestaurantService implements IRestaurantService {
 
-    private final RestaurantRepository restaurantRepository;
-
-    public RestaurantService(RestaurantRepository restaurantRepository) {
-        this.restaurantRepository = restaurantRepository;
-    }
+    private  RestaurantRepository restaurantRepository;
 
     @Override
     public List<Restaurant> retrieveAllRestaurants() {

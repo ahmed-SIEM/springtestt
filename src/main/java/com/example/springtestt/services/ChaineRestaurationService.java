@@ -2,17 +2,20 @@ package com.example.springtestt.services;
 
 import com.example.springtestt.entities.ChaineRestauration;
 import com.example.springtestt.repositories.ChaineRestaurationRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+
+
+@Service
+@AllArgsConstructor
 public class ChaineRestaurationService implements IChaineRestaurationService {
 
-    private final ChaineRestaurationRepository chaineRestaurationRepository;
+    private ChaineRestaurationRepository chaineRestaurationRepository;
 
-    public ChaineRestaurationService(ChaineRestaurationRepository chaineRestaurationRepository) {
-        this.chaineRestaurationRepository = chaineRestaurationRepository;
-    }
 
     @Override
     public List<ChaineRestauration> retrieveAllChaines() {

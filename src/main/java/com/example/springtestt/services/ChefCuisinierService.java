@@ -2,17 +2,19 @@ package com.example.springtestt.services;
 
 import com.example.springtestt.entities.ChefCuisinier;
 import com.example.springtestt.repositories.ChefCuisinierRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+
+@Service
+@AllArgsConstructor
 public class ChefCuisinierService implements IChefCuisinierService {
 
-    private final ChefCuisinierRepository chefCuisinierRepository;
+    private  ChefCuisinierRepository chefCuisinierRepository;
 
-    public ChefCuisinierService(ChefCuisinierRepository chefCuisinierRepository) {
-        this.chefCuisinierRepository = chefCuisinierRepository;
-    }
 
     @Override
     public List<ChefCuisinier> retrieveAllChefs() {

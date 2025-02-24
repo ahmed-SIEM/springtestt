@@ -3,13 +3,16 @@ package com.example.springtestt.services;
 import com.example.springtestt.entities.Client;
 import com.example.springtestt.repositories.ClientRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 
+@Service
 @AllArgsConstructor
+
 public class ClientService implements IClientService{
     ClientRepository clientRepository;
     @Override

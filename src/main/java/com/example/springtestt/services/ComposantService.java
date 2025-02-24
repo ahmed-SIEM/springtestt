@@ -2,17 +2,18 @@ package com.example.springtestt.services;
 
 import com.example.springtestt.entities.Composant;
 import com.example.springtestt.repositories.ComposantRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@AllArgsConstructor
 public class ComposantService implements IComposantService {
 
-    private final ComposantRepository composantRepository;
+    private  ComposantRepository composantRepository;
 
-    public ComposantService(ComposantRepository composantRepository) {
-        this.composantRepository = composantRepository;
-    }
 
     @Override
     public List<Composant> retrieveAllComposants() {
