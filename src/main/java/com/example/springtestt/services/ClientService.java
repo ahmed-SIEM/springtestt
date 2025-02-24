@@ -2,11 +2,14 @@ package com.example.springtestt.services;
 
 import com.example.springtestt.entities.Client;
 import com.example.springtestt.repositories.ClientRepository;
+import lombok.AllArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+
+@AllArgsConstructor
 public class ClientService implements IClientService{
     ClientRepository clientRepository;
     @Override
@@ -39,4 +42,7 @@ public class ClientService implements IClientService{
     public List<Client> addClients(List<Client> Clients) {
         return clientRepository.saveAll(Clients);
     }
+
+
+
 }
