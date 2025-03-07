@@ -5,9 +5,7 @@ import com.example.springtestt.repositories.ClientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -31,10 +29,10 @@ public class ClientService implements IClientService{
     }
 
     @Override
-    public List<Client> retrieveClient(Long idClient) {
-        Optional<Client> client = clientRepository.findById(idClient);
-        return (List<Client>) client.orElse(null);
+    public Client retrieveClient(Long idClient) {
+        return clientRepository.findById(idClient).orElse(null);
     }
+
 
     @Override
     public void removeClient(Long idClient) {

@@ -10,8 +10,9 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
     //List<Restaurant> findByChaineRestaurationLibelle(String l);
 
-    List<Restaurant> findByChaineRestaurationLibelleAndChaineRestaurationDateCreation(String l);
-    Restaurant findbyNom(String nom);
+    List<Restaurant> findByChaineRestaurationLibelleAndChaineRestaurationDateCreation(String libelle, LocalDate dateCreation);
+
+    Restaurant findByNom(String nom);
 
     // 1.5 Liste des restaurants ayant une capacité > 100 et dont la chaîne a été créée avant 2020
     List<Restaurant> findByNbPlacesMaxGreaterThanAndChaineRestaurationDateCreationBefore(Long capacite, LocalDate date);
