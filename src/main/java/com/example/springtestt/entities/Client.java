@@ -1,4 +1,5 @@
 package com.example.springtestt.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -26,6 +27,7 @@ public class Client implements Serializable {
      String identifiant;
      LocalDate datePremiereVisite;
     @OneToMany(mappedBy = "client")
+    @JsonIgnore
      List<Commande> commandes;
 
 

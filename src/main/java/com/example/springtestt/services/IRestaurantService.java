@@ -11,4 +11,6 @@ public interface IRestaurantService {
     Restaurant retrieveRestaurant(Long idRestaurant);
     void removeRestaurant(Long idRestaurant);
     List<Restaurant> addRestaurants(List<Restaurant> restaurants);
+
+    Restaurant affecterRestaurantAChaineRestauration(String nomRestaurant, String libelleChaine);
 }

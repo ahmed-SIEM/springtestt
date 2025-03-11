@@ -1,8 +1,11 @@
 package com.example.springtestt.services;
 
+import com.example.springtestt.entities.ChaineRestauration;
 import com.example.springtestt.entities.Restaurant;
+import com.example.springtestt.repositories.ChaineRestaurationRepository;
 import com.example.springtestt.repositories.RestaurantRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +17,11 @@ import java.util.Optional;
 
 public class RestaurantService implements IRestaurantService {
 
-    private  RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
+
+
+    private ChaineRestaurationRepository chaineRestaurationReposiory;
+
 
     @Override
     public List<Restaurant> retrieveAllRestaurants() {
@@ -45,5 +52,17 @@ public class RestaurantService implements IRestaurantService {
     @Override
     public List<Restaurant> addRestaurants(List<Restaurant> restaurants) {
         return restaurantRepository.saveAll(restaurants);
+    }
+
+    @Override
+    public Restaurant affecterRestaurantAChaineRestauration(String nomRestaurant, String libelleChaine) {
+
+        Restaurant restaurant = restaurantRepository.findByNom(nomRestaurant);
+
+        ChaineRestauration chaine = chaineRestaurationReposiory.findByLibelle(libelleChaine);
+
+        restaurant.setChaineRestauration(chaine);
+
+        return restaurantRepository.save(restaurant);
     }
 }
