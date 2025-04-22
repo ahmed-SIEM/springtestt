@@ -21,4 +21,7 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
     // 2.2 Liste des menus contenant un composant d’un type donné (exemple : viande blanche)
     @Query("SELECT DISTINCT m FROM Menu m JOIN m.composants c WHERE c.detailComposant.typeComposant = :typeComposant")
     List<Menu> findMenuByTypeComposant(@Param("typeComposant") TypeComposant typeComposant);
+
+    List<Menu> findByTypeMenu(TypeMenu typeMenu);
+
 }
