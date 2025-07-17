@@ -28,6 +28,9 @@ public class ClientController {
 
 
 
+
+
+
     
     @GetMapping("/retrieve-client/{client-id}")
     public Client retrieveClient(@PathVariable("client-id") Long clientId) {
