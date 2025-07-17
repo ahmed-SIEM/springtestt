@@ -2,12 +2,12 @@ name: CI/CD - Spring Boot
 
 on:
   push:
-    branches: [main]           # Déclenchement sur push dans la branche main
-  pull_request:                # Ou sur une Pull Request
+    branches: [main]           
+  pull_request:               
 
 jobs:
   build-test-sonar-docker:
-    runs-on: ubuntu-latest     # Machine virtuelle utilisée par GitHub Actions
+    runs-on: ubuntu-latest    
 
     steps:
       - name: Cloner le code
@@ -16,7 +16,7 @@ jobs:
       - name: Installer Java 17
         uses: actions/setup-java@v3
         with:
-          java-version: 17     # Version recommandée pour Spring Boot
+          java-version: 17     
           distribution: temurin
 
       - name: Cache Maven
@@ -27,7 +27,7 @@ jobs:
           restore-keys: ${{ runner.os }}-maven
 
       - name: Compiler & Tester
-        run: mvn clean install  # Compile et exécute les tests JUnit
+        run: mvn clean install  
 
       - name: Analyse SonarQube
         env:
