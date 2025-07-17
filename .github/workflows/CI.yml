@@ -34,7 +34,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Compiler & Générer JaCoCo
-        run: mvn clean verify jacoco:report
+        run: mvn clean verify
 
       - name: Vérifier accès SonarQube
         run: |
