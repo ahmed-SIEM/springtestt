@@ -35,7 +35,7 @@ jobs:
         run: |
           mvn sonar:sonar \
             -Dsonar.projectKey=SpringBack \
-            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.host.url=http://192.168.224.163:9000 \
             -Dsonar.login=$SONAR_TOKEN
 
       - name: Construire image Docker
