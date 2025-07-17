@@ -29,13 +29,14 @@ jobs:
       - name: Compiler & Tester
         run: mvn clean install  
 
-      - name: Analyse SonarQube
+      - name: Analyse SonarCloud
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           mvn sonar:sonar \
-            -Dsonar.projectKey=SpringBack \
-            -Dsonar.host.url=http://192.168.224.163:9000 \
+            -Dsonar.projectKey=ton_organisation_nomduprojet \
+            -Dsonar.organization=ton_organisation \
+            -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=$SONAR_TOKEN
 
       - name: Construire image Docker
@@ -45,4 +46,3 @@ jobs:
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
           docker push ahmedsouid1/springback:latest
-
