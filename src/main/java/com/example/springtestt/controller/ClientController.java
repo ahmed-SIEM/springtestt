@@ -22,26 +22,6 @@ public class ClientController {
         return listClients;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
 
 
