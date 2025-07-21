@@ -11,10 +11,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Cloner le code
+      - name: Checkout Spring Boot repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          path: springapp
 
       - name: Ajouter Maven au PATH
         run: echo "/usr/bin" >> $GITHUB_PATH
@@ -34,9 +35,11 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Compiler & Générer JaCoCo
+        working-directory: springapp
         run: mvn clean verify
 
       - name: Analyse SonarQube
+        working-directory: springapp
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
@@ -56,6 +59,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build & Push image Docker
+        working-directory: springapp
         run: |
           docker buildx build \
             --platform linux/amd64 \
@@ -66,7 +70,7 @@ jobs:
       - name: Checkout k8s-manifests repo
         uses: actions/checkout@v4
         with:
-          repository: ahmedsouid1/k8s-manifests
+          repository: ahmed-SIEM/K8s-manifests
           path: manifests
           token: ${{ secrets.GH_PAT }}
 
@@ -74,8 +78,8 @@ jobs:
         run: |
           sed -i "s|image:.*|image: ${{ secrets.DOCKER_USERNAME }}/springback:${{ github.sha }}|" manifests/backend/deployment.yaml
           cd manifests
-          git config user.name "ahmedsouid1"
-          git config user.email "ahmed@example.com"
+          git config user.name "ahmed-SIEM"
+          git config user.email "ahmedsouid008@gmail.com"
           git add .
           if git diff --staged --quiet; then
             echo "No changes to commit"
