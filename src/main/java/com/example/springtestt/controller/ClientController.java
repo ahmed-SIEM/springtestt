@@ -26,11 +26,16 @@ public class ClientController {
         return (Client) clientService.retrieveClient(clientId);
     }
 
+
+
     @PostMapping("/add-client")
     public Client addClient(@RequestBody Client c) {
         Client client = clientService.addClient(c);
         return client;
     }
+
+
+    
 
     @DeleteMapping("/remove-client/{client-id}")
     public void removeClient(@PathVariable("client-id") Long clientId) {
