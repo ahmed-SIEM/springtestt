@@ -36,10 +36,6 @@ jobs:
       - name: Compiler & Générer JaCoCo
         run: mvn clean verify
 
-      - name: Vérifier accès SonarQube
-        run: |
-          curl -f http://sonarqube.192.168.224.163.nip.io:9000 || echo "⚠️ SonarQube unreachable"
-
       - name: Analyse SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -50,7 +46,7 @@ jobs:
             -Dsonar.login=$SONAR_TOKEN \
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Login DockerHub
@@ -59,10 +55,31 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Construire et pousser l’image Docker
+      - name: Build & Push image Docker
         run: |
           docker buildx build \
             --platform linux/amd64 \
-            -t ahmedsouid1/springback:latest \
+            -t ${{ secrets.DOCKER_USERNAME }}/springback:${{ github.sha }} \
+            -t ${{ secrets.DOCKER_USERNAME }}/springback:latest \
             --push .
 
+      - name: Checkout k8s-manifests repo
+        uses: actions/checkout@v4
+        with:
+          repository: ahmedsouid1/k8s-manifests
+          path: manifests
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Update image tag in backend manifest
+        run: |
+          sed -i "s|image:.*|image: ${{ secrets.DOCKER_USERNAME }}/springback:${{ github.sha }}|" manifests/backend/deployment.yaml
+          cd manifests
+          git config user.name "ahmedsouid1"
+          git config user.email "ahmed@example.com"
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update backend image to ${{ github.sha }}"
+            git push
+          fi
