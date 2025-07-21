@@ -21,6 +21,9 @@ public class ClientController {
         List<Client> listClients = clientService.retrieveAllClients();
         return listClients;
     }
+
+
+
     
     @GetMapping("/retrieve-client/{client-id}")
     public Client retrieveClient(@PathVariable("client-id") Long clientId) {
