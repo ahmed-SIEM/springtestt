@@ -25,6 +25,11 @@ public class ClientController {
     public Client retrieveClient(@PathVariable("client-id") Long clientId) {
         return (Client) clientService.retrieveClient(clientId);
     }
+
+
+
+
+    
     @PostMapping("/add-client")
     public Client addClient(@RequestBody Client c) {
         Client client = clientService.addClient(c);
