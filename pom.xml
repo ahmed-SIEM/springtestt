@@ -99,7 +99,22 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- 👇 Le plugin qui manquait pour MANIFEST.MF -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.example.springtestt.SpringtesttApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
+
     </build>
 
 </project>
