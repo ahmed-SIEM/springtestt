@@ -29,7 +29,7 @@ public class ClientController {
 
 
 
-    
+
     @PostMapping("/add-client")
     public Client addClient(@RequestBody Client c) {
         Client client = clientService.addClient(c);
